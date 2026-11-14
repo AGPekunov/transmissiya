@@ -29,6 +29,32 @@ input[type=text]{user-select:text;-webkit-user-select:text;}
 </style>
 </head>
 <body>
+  <div id="zamok" style="position:fixed; left:0; top:0; width:100%; height:100%;
+     background:#1e1e2f; z-index:9999; display:flex; flex-direction:column;
+     align-items:center; justify-content:center; font-family:Arial, sans-serif;">
+  <h1 style="color:#ffa733; margin-bottom:5px;">Экзамен</h1>
+  <p style="color:#a0a0b8; margin-bottom:20px;">Введите код доступа:</p>
+  <input type="password" id="kod" style="padding:10px; font-size:18px;
+         border-radius:8px; border:2px solid #3a4353; background:#262d3a;
+         color:#e8eaed; text-align:center; width:180px;">
+  <button onclick="otkryt()" style="margin-top:12px; padding:10px 24px;
+          background:#ffa733; color:#12151c; border:none; border-radius:8px;
+          font-weight:bold; cursor:pointer; font-size:16px;">Открыть</button>
+  <div id="err" style="color:#ef6b6b; margin-top:10px;"></div>
+</div>
+<script>
+function otkryt() {
+  if (document.getElementById('kod').value === '2026') {
+    var z = document.getElementById('zamok');
+    z.parentNode.removeChild(z);
+  } else {
+    document.getElementById('err').textContent = 'Неверный код';
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && document.getElementById('kod')) otkryt();
+});
+</script>
 <h1>Экзамен: «Трансмиссия автомобиля»</h1>
 <div class="info user-select-block" id="login">
 <b>Фамилия, имя:</b> <input type="text" id="fio" autocomplete="off">
